@@ -1,0 +1,25 @@
+:root {
+    --secondary-bg-color: #F2F2F7;
+}
+
+.nav{
+    grid-area: nav;
+    background-color: var(--secondary-bg-color);
+    border-top-right-radius: 80px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    min-width: 180px;
+}
+
+.item {
+
+}
+
+.itemLink{
+    color: black;
+}
+
+.itemLinkActive{
+    color: brown;
+    font-size: 20px;
+}

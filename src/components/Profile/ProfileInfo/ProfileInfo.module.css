@@ -1,0 +1,11 @@
+.profile__headerImg{
+    width: 400px;
+}
+
+.profile__avatar{
+    width: 100px;
+}
+
+.profileContent{
+    display: flex;
+}

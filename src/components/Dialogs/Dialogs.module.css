@@ -1,0 +1,10 @@
+:root {
+    --main-bg-color: white;
+}
+
+
+.dialogsContainer{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    background: var(--main-bg-color);
+}

@@ -1,0 +1,79 @@
+:root {
+    --avatar-image-size: 76px;
+    --secondary-bg-color: #F2F2F7;
+}
+
+
+.dialog{
+    color: black;
+
+    padding: 28px 72px 28px 40px;
+}
+
+.dialogLink{
+    color: black;
+    text-decoration: none;
+}
+
+.dialogLinkActive{
+    color: brown;
+    font-size: 40px;
+}
+
+.itemData{
+    display: grid;
+    grid-template-areas:
+            "avatar fullName . lastMessage";
+    grid-template-columns: var(--avatar-image-size) minmax(auto, 100px) minmax(10px, 69px) minmax(100px, auto);
+    grid-template-rows: minmax(var(--avatar-image-size), auto);
+    gap: 4px;
+    width: 100%;
+}
+
+.avatarImgContainer{
+    grid-area: avatar;
+
+    width: fit-content;
+}
+
+.avatarImg{
+    width: var(--avatar-image-size);
+    height: var(--avatar-image-size);
+
+    box-sizing: border-box;
+    border: 4px solid rgba(30, 30, 30, 0.1);
+    border-radius: 400px;
+}
+
+.fullNameContainer{
+    grid-area: fullName;
+
+    background: var(--secondary-bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*width: 146px;*/
+    height: var(--avatar-image-size);
+    border-radius: 6px;
+}
+
+.lastMessageContainer{
+    grid-area: lastMessage;
+
+    display: flex;
+    flex-direction: column;
+    padding: 4px 8px;
+    background: var(--secondary-bg-color);
+    border-radius: 6px;
+}
+
+.lastMessage{
+    background: var(--secondary-bg-color);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.dateTime{
+    align-self: end;
+}
