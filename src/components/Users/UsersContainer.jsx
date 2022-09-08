@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followUnfollowUserAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC
+    followUnfollowUser,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleIsFetching
 } from "../../redux/usersReducer";
 import * as axios from "axios";
 import Users from "./Users";
@@ -35,7 +35,7 @@ class UsersAPIContainer extends React.Component {
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize}
                    onPageChanged={this.onPageChanged} users={this.props.users}
-                   followUnfollow={this.props.followUnfollow} currentPage={this.props.currentPage}/>
+                   followUnfollowUser={this.props.followUnfollowUser} currentPage={this.props.currentPage}/>
         </>
     }
 }
@@ -49,25 +49,12 @@ let mapStateToProps = (state) => ({
     isFetching: state.usersPage.isFetching,
 })
 
-let mapDispatchToProps = (dispatch) => ({
-    followUnfollow: (userId) => {
-        dispatch(followUnfollowUserAC(userId))
-    },
-    setUsers: (users) => {
-        dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (pageNumber) => {
-        dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (count) => {
-        dispatch(setTotalUsersCountAC(count))
-    },
-    toggleIsFetching: (isFetching) => {
-        dispatch(toggleIsFetchingAC(isFetching))
-    },
-})
-
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps, {
+    followUnfollowUser,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching,
+})(UsersAPIContainer);
 
 export default UsersContainer;
