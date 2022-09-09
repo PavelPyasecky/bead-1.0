@@ -1,4 +1,5 @@
-const FOLLOW_UNFOLLOW_USER = 'FOLLOW-UNFOLLOW-USER'
+const FOLLOW_USER = 'FOLLOW-USER'
+const UNFOLLOW_USER = 'UNFOLLOW-USER'
 const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
@@ -15,12 +16,22 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FOLLOW_UNFOLLOW_USER:
+        case FOLLOW_USER:
             return {
                 ...state,
                 users: state.users.map(user => {
                     if (user.id === action.userId) {
-                        return {...user, followed: !user.followed}
+                        return {...user, followed: true}
+                    }
+                    return user;
+                })
+            }
+        case UNFOLLOW_USER:
+            return {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === action.userId) {
+                        return {...user, followed: false}
                     }
                     return user;
                 })
@@ -51,8 +62,13 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export let followUnfollowUser = (id) => ({
-    type: FOLLOW_UNFOLLOW_USER,
+export let follow = (id) => ({
+    type: FOLLOW_USER,
+    userId: id,
+})
+
+export let unfollow = (id) => ({
+    type: UNFOLLOW_USER,
     userId: id,
 })
 

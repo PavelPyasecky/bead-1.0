@@ -6,7 +6,7 @@ import {setAuthUserData} from "../../redux/auth-reducer";
 
 class HeaderAPIContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
             withCredentials: true,
         }).then(response => {
             if (response.data.resultCode === 0) {
