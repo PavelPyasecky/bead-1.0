@@ -4,9 +4,8 @@ import {API_SAMURAI_KEY} from "../redux/redux-store";
 
 const instance = axios.create({
     withCredentials: true,
-    baseUrl: 'https://social-network.samuraijs.com/api/1.0/',
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        // 'Content-Type': 'application/json',
         'API-KEY': API_SAMURAI_KEY,
     }
 });
