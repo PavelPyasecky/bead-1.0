@@ -1,15 +1,15 @@
 import React from "react";
 import Profile from "./Profile";
-import * as axios from "axios";
 import {connect} from "react-redux";
-import {getUserProfile, setUserProfile} from "../../redux/profileReducer";
+import {getStatus, getUserProfile, updateStatus} from "../../redux/profileReducer";
 
 import {
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
-import {usersAPI} from "../../api/api";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -19,7 +19,7 @@ function withRouter(Component) {
         return (
             <Component
                 {...props}
-                router={{ location, navigate, params }}
+                router={{location, navigate, params}}
             />
         );
     }
@@ -31,26 +31,27 @@ function withRouter(Component) {
 class ProfileAPIContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if (!userId) {
-            userId = 2
-        }
         this.props.getUserProfile(userId);
+        setTimeout(() => {
+            this.props.getStatus(userId);
+        }, 1000)
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+                     updateStatus={this.props.updateStatus}/>
         );
     }
 }
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-})
+    status: state.profilePage.status,
+});
 
-const ProfileContainer = connect(mapStateToProps, {
-    getUserProfile
-})(ProfileAPIContainer);
-
-let WithUrlDateContainer = withRouter(ProfileContainer)
-export default WithUrlDateContainer;
+export default compose(
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
+    withRouter,
+    withAuthRedirect
+)(ProfileAPIContainer)

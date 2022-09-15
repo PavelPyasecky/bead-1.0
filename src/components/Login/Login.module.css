@@ -1,0 +1,22 @@
+:root {
+    --secondary-bg-color: #F2F2F7;
+}
+
+.header{
+    grid-area: header;
+    background-color: var(--secondary-bg-color);
+    border-bottom-left-radius: 40px;
+    padding-left: 40px;
+}
+
+.logo-wrapper{
+    width: 80px;
+}
+
+.logo{
+
+}
+
+.loginBlock {
+    float: right;
+}

@@ -1,4 +1,6 @@
 import {authAPI} from "../api/api";
+import {Navigate} from "react-router-dom";
+import React from "react";
 
 const SET_USER_DATA = 'SET-USER-DATA'
 
@@ -7,7 +9,7 @@ let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: null,
+    isAuth: false,
 }
 
 const authReducer = (state=initialState, action) => {
@@ -15,7 +17,8 @@ const authReducer = (state=initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
 
         default:
