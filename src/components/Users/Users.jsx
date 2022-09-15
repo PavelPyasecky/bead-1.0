@@ -2,8 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/img/user.jpg";
-import * as axios from "axios";
-import {API_SAMURAI_KEY} from "../../redux/redux-store";
+import {usersAPI} from "../../api/api";
 
 
 let Users = (props) => {
@@ -54,37 +53,10 @@ let Users = (props) => {
                         </div>
                         <div>
                             {user.followed ?
-                                <button disabled={props.followingInProgressList.some(id => id === user.id)} onClick={() => {
-                                    props.toggleFollowingInProgress(true, user.id);
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'API-KEY': API_SAMURAI_KEY,
-                                        }
-                                    }).then(reponse => {
-                                        if (reponse.data.resultCode === 0) {
-                                            props.unfollow(user.id);
-                                        }
-                                        props.toggleFollowingInProgress(false, user.id);
-                                    })
-                                }}>Unfollow</button> :
-                                <button disabled={props.followingInProgressList.some(id => id === user.id)} onClick={() => {
-                                    props.toggleFollowingInProgress(true, user.id);
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                            withCredentials: true,
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'API-KEY': API_SAMURAI_KEY,
-                                            }
-                                        }).then(reponse => {
-                                            if (reponse.data.resultCode === 0) {
-                                                props.follow(user.id);
-                                            }
-                                            props.toggleFollowingInProgress(false, user.id);
-                                        })
-
-                                }}>Follow</button>
+                                <button disabled={props.followingInProgressList.some(id => id === user.id)}
+                                        onClick={() => {props.unfollow(user.id)}}>Unfollow</button> :
+                                <button disabled={props.followingInProgressList.some(id => id === user.id)}
+                                        onClick={() => {props.follow(user.id)}}>Follow</button>
                             }
                         </div>
                     </div>
