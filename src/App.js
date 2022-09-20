@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css';
-import Navbar from "./components/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 
 function App(props) {
     return (
         <div className='app-container'>
             <HeaderContainer/>
-            <Navbar/>
+            <NavbarContainer/>
             <div className='app-content-wrapper'>
                 <Routes>
                     <Route path='/profile/:userId'

@@ -10,7 +10,9 @@ const Header = (props) => {
             </div>
             <div className={s.loginBlock}>
                 {
-                    props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>
+                    props.isAuth
+                        ? <div>{props.login} - <button onClick={props.logout}>Log Out</button></div>
+                        : <NavLink to={'/login'}>Log In</NavLink>
                 }
             </div>
         </header>

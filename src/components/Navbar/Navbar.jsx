@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
 
     let activeSwitcher = isActive => isActive ? "red" : "blue";
 
@@ -10,7 +10,7 @@ const Navbar = () => {
         <nav className={s.nav}>
             <div className={s.item}>
                 <NavLink className={({isActive}) => `${s.itemLink} ${isActive ? s.itemLinkActive : ""}`}
-                         to='/profile/2'>Profile</NavLink>
+                         to={(props.isAuth && props.authorizedUserId) ? `/profile/${props.authorizedUserId}` : `/profile/`}>Profile</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink className={({isActive}) => `${s.itemLink} ${isActive ? s.itemLinkActive : ""}`}
