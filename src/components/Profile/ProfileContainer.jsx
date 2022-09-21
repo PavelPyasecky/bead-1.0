@@ -11,7 +11,7 @@ import {
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
-function withRouter(Component) {
+export function withRouter(Component) {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();
@@ -51,7 +51,7 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
+    withAuthRedirect,
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
-    withAuthRedirect
 )(ProfileAPIContainer)

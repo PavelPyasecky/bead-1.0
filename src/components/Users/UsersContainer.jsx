@@ -7,7 +7,6 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
@@ -51,5 +50,4 @@ export default compose(
         setTotalUsersCount,
         getUsers,
     }),
-    withAuthRedirect,
 )(UsersAPIContainer);
