@@ -1,0 +1,12 @@
+:root {
+    --avatar-image-size: 76px;
+    --secondary-bg-color: #F2F2F7;
+}
+
+.pageNumber{
+    cursor: pointer;
+}
+
+.selectPage{
+    font-weight: bold;
+}

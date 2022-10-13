@@ -3,6 +3,7 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const DELETE_POST = 'DELETE-POST'
 
 let initialState = {
     posts: [
@@ -14,10 +15,10 @@ let initialState = {
     status: '',
 }
 
-const profileReducer = (state=initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     let stateCopy = {...state};
 
-    switch(action.type) {
+    switch (action.type) {
         case ADD_POST:
             let newPost = {
                 id: 5,
@@ -33,6 +34,10 @@ const profileReducer = (state=initialState, action) => {
 
         case SET_STATUS:
             stateCopy.status = action.status;
+            break;
+
+        case DELETE_POST:
+            stateCopy.posts = state.posts.filter(post => post.id !== action.postId);
             break;
 
         default:
@@ -57,26 +62,27 @@ export const setStatus = (status) => ({
     status,
 })
 
-export const getUserProfile = (userId) => (dispatch) => {
-    usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data));
-    })
+export const deletePost = (postId) => ({
+    type: DELETE_POST,
+    postId,
+})
+
+export const getUserProfile = (userId) => async (dispatch) => {
+    let response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfile(response.data));
 }
 
-export const getStatus = (userId, status) => (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(setStatus(response.data));
-    });
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data));
 }
 
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setStatus(status));
-        }
-    });
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 }
-
 
 
 export default profileReducer;
