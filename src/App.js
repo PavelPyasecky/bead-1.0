@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer, {withRouter} from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
@@ -12,6 +11,12 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/redux-store";
+import {withRouter} from "./components/Profile/ProfileContainer";
+import withSuspense from "./hoc/withSuspense";
+
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
 class App extends React.Component {
     componentDidMount() {
@@ -27,9 +32,8 @@ class App extends React.Component {
                     <NavbarContainer/>
                     <div className='app-content-wrapper'>
                         <Routes>
-                            <Route path='/profile/:userId'
-                                   element={<ProfileContainer/>}/>
-                            <Route path='/dialogs' element={<DialogsContainer/>}/>
+                            <Route path='/profile/:userId' element={withSuspense(ProfileContainer)()}/>
+                            <Route path='/dialogs' element={withSuspense(DialogsContainer)()}/>
                             <Route path='/users' element={<UsersContainer/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/news'/>
