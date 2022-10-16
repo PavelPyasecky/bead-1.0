@@ -5,8 +5,11 @@
 
 .pageNumber{
     cursor: pointer;
+    padding: 3px;
+    border: 1px solid black;
 }
 
 .selectPage{
     font-weight: bold;
+    border: 1px dashed red;
 }

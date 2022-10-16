@@ -8,7 +8,7 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, ...props}) 
     return (
         <div>
             <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
-                       totalUsersCount={totalUsersCount} pageSize={pageSize}/>
+                       totalItemsCount={totalUsersCount} pageSize={pageSize}/>
             {
                 props.users.map(user => <User user={user} followingInProgressList={props.followingInProgressList}
                     key={user.id} unfollow={props.unfollow} follow={props.follow}/>
