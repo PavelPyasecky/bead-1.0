@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/bead-1.0/static/css/main.f9b08c51.css",
-    "main.js": "/bead-1.0/static/js/main.8e493ab2.js",
+    "main.js": "/bead-1.0/static/js/main.4526f3c6.js",
     "static/css/687.1e2e4b48.chunk.css": "/bead-1.0/static/css/687.1e2e4b48.chunk.css",
     "static/js/687.f4dd8ab5.chunk.js": "/bead-1.0/static/js/687.f4dd8ab5.chunk.js",
     "static/js/787.4d3411f1.chunk.js": "/bead-1.0/static/js/787.4d3411f1.chunk.js",
@@ -9,13 +9,13 @@
     "static/media/user.jpg": "/bead-1.0/static/media/user.f8d8048656602c94379b.jpg",
     "index.html": "/bead-1.0/index.html",
     "main.f9b08c51.css.map": "/bead-1.0/static/css/main.f9b08c51.css.map",
-    "main.8e493ab2.js.map": "/bead-1.0/static/js/main.8e493ab2.js.map",
+    "main.4526f3c6.js.map": "/bead-1.0/static/js/main.4526f3c6.js.map",
     "687.1e2e4b48.chunk.css.map": "/bead-1.0/static/css/687.1e2e4b48.chunk.css.map",
     "687.f4dd8ab5.chunk.js.map": "/bead-1.0/static/js/687.f4dd8ab5.chunk.js.map",
     "787.4d3411f1.chunk.js.map": "/bead-1.0/static/js/787.4d3411f1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f9b08c51.css",
-    "static/js/main.8e493ab2.js"
+    "static/js/main.4526f3c6.js"
   ]
 }
